@@ -66,8 +66,10 @@ def urlExecution(command, param, value):
 def callback(data):
 	# rospy.loginfo(data)
 	# rospy.loginfo('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-	horizontal = data.axes[2]
-	vertical = data.axes[3]
+	# horizontal = data.axes[2] # 14, 15 (14: left)
+	# vertical = data.axes[3] # 8 10 (8: upper)
+	horizontal = (1 - data.axes[14] - (1 - data.axes[15])) / 2 # 14: L, 15: R
+	vertical = (1 - data.axes[8] - (1 - data.axes[10])) / 2 # 8: Upper, 10: Lower
 	control_motors(vertical,horizontal)
 
         # rospy.loginfo(horizontal)
